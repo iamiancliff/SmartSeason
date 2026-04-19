@@ -1,20 +1,67 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# SmartSeason
 
-# Run and deploy your AI Studio app
+A field monitoring system that tracks crop progress across growing seasons. Admins manage fields and assign agents. Agents report real-time updates from the ground.
 
-This contains everything you need to run your app locally.
+## Tech Stack
 
-View your app in AI Studio: https://ai.studio/apps/aee3cccc-223e-4894-9c60-0b0fedbd13c7
+| Layer    | Technology                              |
+|----------|-----------------------------------------|
+| Runtime  | Node.js                                 |
+| Framework | Express + TypeScript                   |
+| Database | PostgreSQL via [Neon](https://neon.tech) |
+| ORM      | Prisma v7                               |
+| Auth     | JWT + bcrypt                            |
+| Validation | Zod                                   |
+| Frontend | React + TypeScript + Vite *(in progress)* |
 
-## Run Locally
+## Project Structure
 
-**Prerequisites:**  Node.js
+```
+SmartSeason/
+├── backend/
+│   ├── prisma/               # Schema, migrations, seed data
+│   ├── src/
+│   │   ├── controllers/      # HTTP request handlers
+│   │   ├── services/         # Business logic
+│   │   ├── middleware/       # Auth, roles, validation, error handling
+│   │   ├── routes/           # Route registration
+│   │   ├── schemas/          # Zod request validation schemas
+│   │   └── lib/              # Prisma client
+│   └── server.ts
+└── frontend/                 # In progress
+```
 
+## Setup
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Prerequisites
+
+- Node.js v18+
+- PostgreSQL database (Neon recommended)
+
+### Backend
+
+```bash
+cd backend
+npm install
+```
+
+Create `backend/.env`:
+
+```env
+DATABASE_URL="your_postgresql_connection_string"
+JWT_SECRET="your_secret_key"
+PORT=3000
+FRONTEND_URL=http://localhost:5173
+```
+
+```bash
+npx prisma migrate deploy
+npm run prisma:seed
+npm run dev
+```
+
+API runs at `http://localhost:3000`.
+
+## License
+
+MIT
