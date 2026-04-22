@@ -5,7 +5,7 @@ import { prisma } from '../lib/prisma.ts';
 
 export class AuthService {
   static async register(data: any) {
-    const { email, password, name } = data;
+    const { email, password, name, location } = data;
     // role is intentionally ignored — all self-registered users are AGENT
     // Only an ADMIN can promote a user via PUT /api/users/:id/role
 
@@ -20,12 +20,19 @@ export class AuthService {
         email,
         password: hashedPassword,
         name,
+        location,
         role: 'AGENT',
       },
     });
 
     const { password: _, ...userWithoutPassword } = user;
-    return userWithoutPassword;
+    const token = jwt.sign(
+      { id: user.id, email: user.email, role: user.role },
+      process.env.JWT_SECRET || 'fallback-secret',
+      { expiresIn: '1d' }
+    );
+
+    return { user: userWithoutPassword, token };
   }
 
   static async login(data: any) {
@@ -58,6 +65,7 @@ export class AuthService {
         id: true,
         name: true,
         email: true,
+        location: true,
         role: true,
         createdAt: true,
         updatedAt: true,
