@@ -30,6 +30,7 @@ export interface Field {
   id: string;
   name: string;
   cropType: string;
+  location?: string;
   plantingDate: string;
   currentStage: FieldStage;
   status: FieldStatus; // Synced with backend FieldService.computeStatus

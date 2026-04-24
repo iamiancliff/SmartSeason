@@ -26,9 +26,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      // Clear token and force redirect to login
-      localStorage.removeItem('smartseason_token');
-      localStorage.removeItem('smartseason_user');
+      // Emit event for central auth store to handle state clear and UI redirect
       window.dispatchEvent(new Event('auth-unauthorized'));
     }
     return Promise.reject(error);

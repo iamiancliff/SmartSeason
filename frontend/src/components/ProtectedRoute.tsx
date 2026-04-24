@@ -11,14 +11,14 @@ interface ProtectedRouteProps {
 export const ProtectedRoute = ({ children, role }: ProtectedRouteProps) => {
   const { isAuthenticated, user } = useAuthStore();
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated || !user) {
     return <Navigate to="/login" replace />;
   }
 
-  if (role && user?.role !== role) {
+  if (role && user.role !== role) {
     // If user tries to access a route they don't have permission for,
     // redirect them to their respective dashboard
-    const redirectPath = user?.role === 'ADMIN' ? '/admin' : '/agent';
+    const redirectPath = user.role === 'ADMIN' ? '/admin' : '/agent';
     return <Navigate to={redirectPath} replace />;
   }
 

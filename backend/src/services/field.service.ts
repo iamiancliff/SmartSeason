@@ -4,12 +4,14 @@ export class FieldService {
   private static computeStatus(field: any) {
     if (field.currentStage === 'HARVESTED') return 'COMPLETED';
 
-    const lastUpdate = field.updates[0];
-    const daysSinceUpdate = lastUpdate
-      ? (new Date().getTime() - new Date(lastUpdate.createdAt).getTime()) / (1000 * 3600 * 24)
-      : (new Date().getTime() - new Date(field.createdAt).getTime()) / (1000 * 3600 * 24);
+    const lastUpdate = field.updates?.[0];
+    const referenceDate = lastUpdate
+      ? new Date(lastUpdate.createdAt)
+      : new Date(field.plantingDate);
+    const daysSinceReference =
+      (Date.now() - referenceDate.getTime()) / (1000 * 3600 * 24);
 
-    if (daysSinceUpdate > 7) return 'AT_RISK';
+    if (daysSinceReference > 7) return 'AT_RISK';
     return 'ACTIVE';
   }
 
@@ -19,6 +21,7 @@ export class FieldService {
         name: data.name,
         cropType: data.cropType,
         plantingDate: new Date(data.plantingDate),
+        location: data.location,
         currentStage: data.currentStage || 'PLANTED',
       }
     });
@@ -107,6 +110,7 @@ export class FieldService {
         name: data.name,
         cropType: data.cropType,
         plantingDate: data.plantingDate ? new Date(data.plantingDate) : undefined,
+        location: data.location,
         currentStage: data.currentStage
       }
     });

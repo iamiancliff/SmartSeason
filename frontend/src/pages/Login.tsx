@@ -6,7 +6,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { toast } from 'sonner';
-import { Loader2, Eye, EyeOff, Leaf } from 'lucide-react';
+import { Loader2, Eye, EyeOff, Leaf, Mail, Lock } from 'lucide-react';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -61,21 +61,30 @@ export const Login = () => {
         <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input 
-            id="email" 
-            type="email" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="admin@smartseason.com"
-            required
-            autoComplete="email"
-            disabled={isLoading}
-          />
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+              <Mail size={18} />
+            </div>
+            <Input 
+              id="email" 
+              type="email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="admin@smartseason.com"
+              required
+              autoComplete="email"
+              disabled={isLoading}
+              className="pl-10"
+            />
+          </div>
         </div>
         
         <div className="space-y-2 relative">
           <Label htmlFor="password">Password</Label>
           <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+              <Lock size={18} />
+            </div>
             <Input 
               id="password" 
               type={showPassword ? "text" : "password"} 
@@ -84,7 +93,7 @@ export const Login = () => {
               required
               autoComplete="current-password"
               disabled={isLoading}
-              className="pr-10"
+              className="pl-10 pr-10"
             />
             <button 
               type="button"

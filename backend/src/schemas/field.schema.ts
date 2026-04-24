@@ -9,6 +9,7 @@ export const createFieldSchema = z.object({
   plantingDate: z.string().refine((val) => !isNaN(Date.parse(val)), {
     message: 'Invalid planting date',
   }),
+  location: z.string().min(2, 'Location must be at least 2 characters'),
   currentStage: StageEnum.optional(),
 });
 
@@ -19,6 +20,7 @@ export const updateFieldSchema = z.object({
     .string()
     .refine((val) => !isNaN(Date.parse(val)), { message: 'Invalid planting date' })
     .optional(),
+  location: z.string().min(2).optional(),
   currentStage: StageEnum.optional(),
 });
 

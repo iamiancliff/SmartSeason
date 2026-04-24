@@ -15,7 +15,7 @@ import { AdminDashboard } from './pages/AdminDashboard';
 import { AgentDashboard } from './pages/AgentDashboard';
 import { AgentHistory } from './pages/AgentHistory';
 import { AgentProfile } from './pages/AgentProfile';
-import { AdminDirectory } from './pages/AdminDirectory';
+import { AdminFieldDetails } from './pages/AdminFieldDetails';
 import { AdminAgents } from './pages/AdminAgents';
 import { AdminProfile } from './pages/AdminProfile';
 
@@ -53,8 +53,8 @@ function App() {
             element={<ProtectedRoute role="ADMIN"><AdminDashboard /></ProtectedRoute>} 
           />
           <Route 
-            path="/admin/directory" 
-            element={<ProtectedRoute role="ADMIN"><AdminDirectory /></ProtectedRoute>} 
+            path="/admin/fields/:id" 
+            element={<ProtectedRoute role="ADMIN"><AdminFieldDetails /></ProtectedRoute>} 
           />
           <Route 
             path="/admin/agents" 

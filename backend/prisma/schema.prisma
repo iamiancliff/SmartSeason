@@ -39,6 +39,7 @@ model Field {
   name           String
   cropType       String
   plantingDate   DateTime
+  location       String?
   currentStage   Stage         @default(PLANTED)
   assignedToId   String?
   assignedTo     User?         @relation("AgentFields", fields: [assignedToId], references: [id], onDelete: SetNull)
