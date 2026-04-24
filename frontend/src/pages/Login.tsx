@@ -70,7 +70,7 @@ export const Login = () => {
               type="email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@smartseason.com"
+              placeholder={isAdmin ? "admin@smartseason.com" : "agent@smartseason.com"}
               required
               autoComplete="email"
               disabled={isLoading}
