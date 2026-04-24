@@ -3,12 +3,23 @@ import { userApi } from '../api/user.api';
 import type { User } from '../types/api.types';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { Users, Mail } from 'lucide-react';
+import { Button } from '../components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogDescription
+} from '../components/ui/dialog';
+import { Users, Mail, Trash2, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export const AdminAgents = () => {
   const [agents, setAgents] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [agentToDelete, setAgentToDelete] = useState<User | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const fetchAgents = async () => {
     try {
@@ -24,6 +35,21 @@ export const AdminAgents = () => {
   useEffect(() => {
     fetchAgents();
   }, []);
+
+  const handleDeleteAgent = async () => {
+    if (!agentToDelete) return;
+    try {
+      setIsDeleting(true);
+      await userApi.deleteAgent(agentToDelete.id);
+      setAgents(agents.filter(a => a.id !== agentToDelete.id));
+      toast.success(`${agentToDelete.name} has been removed.`);
+      setAgentToDelete(null);
+    } catch (error) {
+      toast.error('Failed to remove agent. They may have active dependencies.');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   if (loading) return <div className="p-8 text-center text-gray-500">Loading agents...</div>;
 
@@ -55,6 +81,18 @@ export const AdminAgents = () => {
                    <span className="font-medium text-gray-900 truncate">{agent.email}</span>
                 </div>
               </div>
+
+              <div className="mt-6 flex justify-end">
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  onClick={() => setAgentToDelete(agent)}
+                  className="text-red-500 hover:text-red-600 hover:bg-red-50 text-xs px-2 h-8"
+                >
+                  <Trash2 className="w-3.5 h-3.5 mr-1.5" />
+                  Remove
+                </Button>
+              </div>
             </CardContent>
           </Card>
         ))}
@@ -65,6 +103,32 @@ export const AdminAgents = () => {
           </div>
         )}
       </div>
+      
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={!!agentToDelete} onOpenChange={(open) => !open && setAgentToDelete(null)}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle className="text-red-600 flex items-center gap-2">
+              <Trash2 className="w-5 h-5" />
+              Remove Agent
+            </DialogTitle>
+            <DialogDescription className="pt-3 text-gray-600">
+              Are you sure you want to remove <strong>{agentToDelete?.name}</strong>? 
+              <br/><br/>
+              This will permanently delete their account and remove all of their submitted field updates. This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="mt-4">
+            <Button variant="outline" onClick={() => setAgentToDelete(null)} disabled={isDeleting}>
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={handleDeleteAgent} disabled={isDeleting} className="bg-red-600 hover:bg-red-700">
+              {isDeleting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
+              Confirm Removal
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

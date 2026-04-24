@@ -17,6 +17,7 @@ import { AgentHistory } from './pages/AgentHistory';
 import { AgentProfile } from './pages/AgentProfile';
 import { AdminDirectory } from './pages/AdminDirectory';
 import { AdminAgents } from './pages/AdminAgents';
+import { AdminProfile } from './pages/AdminProfile';
 
 // Smart Redirect as requested in the requirements
 const DashboardRedirect = () => {
@@ -58,6 +59,10 @@ function App() {
           <Route 
             path="/admin/agents" 
             element={<ProtectedRoute role="ADMIN"><AdminAgents /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/admin/profile" 
+            element={<ProtectedRoute role="ADMIN"><AdminProfile /></ProtectedRoute>} 
           />
 
           {/* Agent Explicit Route */}

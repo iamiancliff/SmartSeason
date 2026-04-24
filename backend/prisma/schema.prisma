@@ -24,9 +24,10 @@ model User {
   id        String   @id @default(uuid())
   name      String
   email     String   @unique
-  password  String
-  location  String?
-  role      Role     @default(AGENT)
+  password     String
+  profilePhoto String?
+  location     String?
+  role         Role     @default(AGENT)
   fields    Field[]  @relation("AgentFields")
   updates   FieldUpdate[]
   createdAt DateTime @default(now())
@@ -40,7 +41,7 @@ model Field {
   plantingDate   DateTime
   currentStage   Stage         @default(PLANTED)
   assignedToId   String?
-  assignedTo     User?         @relation("AgentFields", fields: [assignedToId], references: [id])
+  assignedTo     User?         @relation("AgentFields", fields: [assignedToId], references: [id], onDelete: SetNull)
   updates        FieldUpdate[]
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
@@ -51,7 +52,7 @@ model FieldUpdate {
   fieldId   String
   field     Field    @relation(fields: [fieldId], references: [id], onDelete: Cascade)
   agentId   String
-  agent     User     @relation(fields: [agentId], references: [id])
+  agent     User     @relation(fields: [agentId], references: [id], onDelete: Cascade)
   stage     Stage
   note      String?
   createdAt DateTime @default(now())

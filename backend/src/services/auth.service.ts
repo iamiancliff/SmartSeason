@@ -66,6 +66,7 @@ export class AuthService {
         name: true,
         email: true,
         location: true,
+        profilePhoto: true,
         role: true,
         createdAt: true,
         updatedAt: true,
@@ -73,5 +74,45 @@ export class AuthService {
     });
     if (!user) throw { status: 404, message: 'User not found' };
     return user;
+  }
+
+  static async changePassword(userId: string, currentPassword: string, newPassword: string) {
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+    if (!user) throw { status: 404, message: 'User not found' };
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      throw { status: 401, message: 'Current password is incorrect' };
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await prisma.user.update({
+      where: { id: userId },
+      data: { password: hashedPassword },
+    });
+
+    return { message: 'Password changed successfully' };
+  }
+
+  static async uploadProfilePhoto(userId: string, filePath: string) {
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+    if (!user) throw { status: 404, message: 'User not found' };
+
+    const updated = await prisma.user.update({
+      where: { id: userId },
+      data: { profilePhoto: filePath },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        location: true,
+        profilePhoto: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+
+    return updated;
   }
 }

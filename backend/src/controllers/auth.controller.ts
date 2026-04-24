@@ -30,4 +30,27 @@ export class AuthController {
       next(error);
     }
   }
+
+  static async changePassword(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const { currentPassword, newPassword } = req.body;
+      const result = await AuthService.changePassword(req.user!.id, currentPassword, newPassword);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async uploadPhoto(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+      }
+      const filePath = `/uploads/${req.file.filename}`;
+      const user = await AuthService.uploadProfilePhoto(req.user!.id, filePath);
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

@@ -9,5 +9,8 @@ export const userApi = {
   getAgents: async (): Promise<User[]> => {
     const users = await userApi.getUsers();
     return users.filter(user => user.role === 'AGENT');
+  },
+  deleteAgent: async (id: string): Promise<void> => {
+    await api.delete(`/users/${id}`);
   }
 };

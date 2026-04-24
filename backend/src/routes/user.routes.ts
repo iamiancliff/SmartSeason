@@ -18,5 +18,6 @@ router.use(authenticateToken, authorizeRoles('ADMIN'));
 router.get('/', UserController.getAll);
 router.get('/:id', UserController.getById);
 router.put('/:id/role', validate(updateRoleSchema), UserController.updateRole);
+router.delete('/:id', UserController.delete);
 
 export default router;

@@ -15,5 +15,21 @@ export const authApi = {
   getMe: async (): Promise<{ user: User }> => {
     const response = await api.get<{ user: User }>('/auth/me');
     return response.data;
+  },
+
+  changePassword: async (currentPassword: string, newPassword: string): Promise<{ message: string }> => {
+    const response = await api.put<{ message: string }>('/auth/password', { currentPassword, newPassword });
+    return response.data;
+  },
+
+  uploadPhoto: async (file: File): Promise<User> => {
+    const formData = new FormData();
+    formData.append('photo', file);
+    const response = await api.post<User>('/auth/photo', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
   }
 };

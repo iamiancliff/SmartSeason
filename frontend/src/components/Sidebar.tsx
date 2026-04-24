@@ -3,6 +3,7 @@ import { useAuthStore } from '../stores/authStore';
 import { Leaf, LayoutDashboard, Database, Users, LogOut, History, User } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { Button } from './ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 export const Sidebar = () => {
   const { user, logout } = useAuthStore();
@@ -14,6 +15,7 @@ export const Sidebar = () => {
     { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
     { name: 'Directory', path: '/admin/directory', icon: Database },
     { name: 'Agents', path: '/admin/agents', icon: Users },
+    { name: 'Profile', path: '/admin/profile', icon: User },
   ];
 
   const agentLinks = [
@@ -64,16 +66,29 @@ export const Sidebar = () => {
       </div>
 
       {/* User Section bottom */}
-      <div className="p-4 border-t border-gray-100 bg-gray-50/50">
-        <div className="flex items-center justify-between">
+      <div className="p-4 border-t border-gray-100 bg-gray-50/50 flex flex-col gap-4">
+        <div className="flex items-center gap-3">
+          <Avatar className="h-10 w-10 border border-neutral-200">
+            {user.profilePhoto && (
+              <AvatarImage src={`http://localhost:3000${user.profilePhoto}`} alt={user.name} />
+            )}
+            <AvatarFallback className="bg-primary/10 text-primary text-sm font-semibold">
+              {user.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
           <div className="flex flex-col overflow-hidden">
             <span className="text-sm font-medium text-gray-900 truncate">{user.name}</span>
             <span className="text-xs text-gray-500 truncate">{user.email}</span>
           </div>
-          <Button variant="ghost" size="icon" onClick={() => logout()} title="Sign out" className="text-gray-500 hover:text-red-600 hover:bg-red-50">
-            <LogOut className="w-4 h-4" />
-          </Button>
         </div>
+        <Button 
+          variant="outline" 
+          className="w-full justify-center text-red-600 hover:text-red-700 hover:bg-red-50 border-red-100" 
+          onClick={() => logout()}
+        >
+          <LogOut className="w-4 h-4 mr-2" />
+          Sign out
+        </Button>
       </div>
     </div>
   );

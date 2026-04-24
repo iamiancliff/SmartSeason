@@ -32,3 +32,6 @@ frontend/src/generated/
 
 # IDE
 .vscode/settings.json
+
+# Uploads
+backend/uploads/

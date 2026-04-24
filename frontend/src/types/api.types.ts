@@ -3,6 +3,7 @@ export interface User {
   name: string;
   email: string;
   location?: string;
+  profilePhoto?: string;
   role: 'ADMIN' | 'AGENT';
 }
 

@@ -1,6 +1,7 @@
 // src/server.ts
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import { rateLimit } from 'express-rate-limit';
 import dotenv from 'dotenv';
 
@@ -18,6 +19,7 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 // Middleware
 app.use(express.json());
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 app.use(cors({
   origin: FRONTEND_URL,
   credentials: true,

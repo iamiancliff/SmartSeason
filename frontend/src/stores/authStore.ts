@@ -6,6 +6,7 @@ interface AuthState {
   token: string | null;
   isAuthenticated: boolean;
   setAuth: (user: User, token: string) => void;
+  updateUser: (partial: Partial<User>) => void;
   logout: () => void;
 }
 
@@ -32,6 +33,15 @@ export const useAuthStore = create<AuthState>((set) => {
       localStorage.setItem('smartseason_token', token);
       localStorage.setItem('smartseason_user', JSON.stringify(user));
       set({ user, token, isAuthenticated: true });
+    },
+    
+    updateUser: (partial: Partial<User>) => {
+      set((state) => {
+        if (!state.user) return state;
+        const updatedUser = { ...state.user, ...partial };
+        localStorage.setItem('smartseason_user', JSON.stringify(updatedUser));
+        return { user: updatedUser };
+      });
     },
     
     logout: () => {

@@ -4,8 +4,7 @@ import { useAuthStore } from '../stores/authStore';
 import { Sidebar } from '../components/Sidebar';
 import { GlobalUpdateModal } from '../components/GlobalUpdateModal';
 import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Search, Bell, ChevronRight, User } from 'lucide-react';
+import { ChevronRight, PlusCircle } from 'lucide-react';
 
 export const AppLayout = () => {
   const { user } = useAuthStore();
@@ -47,41 +46,18 @@ export const AppLayout = () => {
              {getBreadcrumb()}
            </div>
 
-           {/* Center: Minimal Search */}
-           <div className="flex-1 max-w-md hidden md:flex items-center">
-             <div className="relative w-full group">
-               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-[#a3e635] transition-colors" />
-               <Input 
-                 placeholder="Search platform..." 
-                 className="w-full bg-slate-100 border-transparent rounded-full h-9 pl-10 pr-4 text-sm focus-visible:ring-1 focus-visible:ring-[#a3e635] focus-visible:border-[#a3e635] hover:bg-slate-200/60 transition-colors"
-               />
-             </div>
-           </div>
 
-           {/* Right: Actions & Identity */}
-           <div className="flex-1 flex items-center justify-end gap-5 pl-4">
-             {user?.role === 'AGENT' && (
+           {/* Right: Actions */}
+           <div className="flex items-center justify-end pl-4">
+              {user?.role === 'AGENT' && (
                <Button 
                  onClick={() => setIsUpdateModalOpen(true)}
-                 className="bg-[#a3e635] hover:bg-[#84cc16] text-gray-900 font-bold px-4 h-9 shadow-sm shadow-[#a3e635]/20 hidden sm:flex"
+                 className="bg-linear-to-r from-[#a3e635] to-[#84cc16] hover:from-[#84cc16] hover:to-[#65a30d] text-gray-900 font-bold px-6 py-5 rounded-full shadow-md shadow-[#a3e635]/30 hidden sm:flex items-center gap-2 transition-all duration-300 transform hover:scale-[1.02] border border-[#a3e635]/50"
                >
-                 + Submit Update
+                 <PlusCircle className="w-5 h-5" />
+                 <span>Submit Field Update</span>
                </Button>
              )}
-             
-             <div className="flex items-center gap-1.5 text-gray-400">
-               <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-slate-100 hover:text-gray-900 rounded-full relative">
-                 <Bell className="w-4 h-4" />
-                 <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
-               </Button>
-             </div>
-
-             <div className="flex items-center gap-2.5 pl-2 border-l border-gray-200">
-               <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-gray-500">
-                 <User className="w-4 h-4" />
-               </div>
-               <span className="text-sm font-bold text-gray-900 hidden lg:block">{user?.name}</span>
-             </div>
            </div>
         </header>
 

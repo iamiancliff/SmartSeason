@@ -31,4 +31,13 @@ export class UserController {
       next(error);
     }
   }
+
+  static async delete(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      await UserService.deleteUser(req.params.id as string);
+      res.status(204).send();
+    } catch (error) {
+      next(error);
+    }
+  }
 }

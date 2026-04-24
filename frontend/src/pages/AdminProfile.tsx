@@ -15,7 +15,7 @@ import {
 import { User, Mail, ShieldCheck, MapPin, Camera, KeyRound, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
-export const AgentProfile = () => {
+export const AdminProfile = () => {
   const { user, updateUser, logout } = useAuthStore();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);

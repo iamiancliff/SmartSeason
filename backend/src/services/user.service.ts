@@ -43,12 +43,9 @@ export class UserService {
     return user;
   }
 
-  static async updateUserRole(id: string, role: 'ADMIN' | 'AGENT') {
-    const user = await prisma.user.findUnique({ where: { id } });
-    if (!user) throw { status: 404, message: 'User not found' };
-
-    const updated = await prisma.user.update({
-      where: { id },
+  static async updateUserRole(userId: string, role: 'ADMIN' | 'AGENT') {
+    const user = await prisma.user.update({
+      where: { id: userId },
       data: { role },
       select: {
         id: true,
@@ -58,6 +55,13 @@ export class UserService {
         updatedAt: true,
       },
     });
-    return updated;
+    return user;
+  }
+
+  static async deleteUser(userId: string) {
+    const user = await prisma.user.delete({
+      where: { id: userId },
+    });
+    return user;
   }
 }
