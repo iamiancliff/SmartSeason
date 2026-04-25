@@ -1,11 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { fieldApi } from '../api/field.api';
-import type { Field, FieldUpdate, FieldStage } from '../types/api.types';
+import type { FieldUpdate, FieldStage } from '../types/api.types';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table';
 import { Input } from '../components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Badge } from '../components/ui/badge';
-import { Leaf, Search, Filter, History } from 'lucide-react';
+import { Search, Filter, History } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface FlattenedUpdate extends FieldUpdate {
