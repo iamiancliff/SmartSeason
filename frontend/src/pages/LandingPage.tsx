@@ -8,23 +8,23 @@ export const LandingPage = () => {
     <div className="min-h-screen bg-white font-sans flex flex-col relative">
       
       {/* Clean Navbar */}
-      <nav className="w-full z-50 py-6 absolute top-0 left-0">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 flex justify-between items-center">
-          <div className="flex items-center gap-3">
+      <nav className="w-full z-50 py-4 sm:py-6 absolute top-0 left-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 flex justify-between items-center">
+          <div className="flex items-center gap-2 sm:gap-3">
             <div className="bg-[#a3e635] p-2.5 rounded-xl shadow-sm">
               <Leaf className="w-5 h-5 text-gray-900" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-white drop-shadow-md">SmartSeason</span>
+            <span className="text-lg sm:text-xl font-bold tracking-tight text-white drop-shadow-md">SmartSeason</span>
           </div>
           <div className="flex items-center gap-3 sm:gap-4">
             <Link to="/login?role=admin">
-              <Button variant="ghost" className="text-white hover:text-white hover:bg-white/20 font-semibold px-4 rounded-full transition-all">
-                Login as Admin
+              <Button variant="ghost" className="text-white hover:text-white hover:bg-white/20 font-semibold px-3 sm:px-4 text-xs sm:text-sm rounded-full transition-all">
+                <span className="hidden sm:inline mr-1">Login as </span>Admin
               </Button>
             </Link>
             <Link to="/login?role=agent">
-              <Button className="bg-[#a3e635] hover:bg-[#84cc16] text-gray-900 font-bold px-6 rounded-full shadow-sm transition-all">
-                Login as Agent
+              <Button className="bg-[#a3e635] hover:bg-[#84cc16] text-gray-900 font-bold px-4 sm:px-6 text-xs sm:text-sm rounded-full shadow-sm transition-all">
+                <span className="hidden sm:inline mr-1">Login as </span>Agent
               </Button>
             </Link>
           </div>
@@ -40,13 +40,13 @@ export const LandingPage = () => {
         ></div>
         <div className="absolute inset-0 z-0 bg-black/40 pointer-events-none"></div>
 
-        <div className="max-w-4xl mx-auto px-6 sm:px-8 relative z-10 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-8 relative z-10 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.15] mb-6 drop-shadow-md">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.15] mb-4 sm:mb-6 drop-shadow-md">
               Smart Field Monitoring for <br className="hidden md:block" />
               <span className="text-[#a3e635] drop-shadow-none">Better Decisions</span>
             </h1>
