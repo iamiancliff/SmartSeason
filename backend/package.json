@@ -1,7 +1,6 @@
 {
   "name": "smartseason-backend",
   "version": "1.0.0",
-  "type": "module",
   "description": "SmartSeason Backend API",
   "scripts": {
     "build": "tsc",
