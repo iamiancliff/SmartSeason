@@ -7,7 +7,7 @@ A comprehensive, full-stack web application designed to help agricultural coordi
 
 ---
 
-## 🏗️ Architecture Design
+##  Architecture Design
 
 SmartSeason is structured as a **Monorepo** containing both the frontend client and the backend API. This ensures tight coupling of data types and simplified full-stack deployment.
 
@@ -19,7 +19,7 @@ SmartSeason is structured as a **Monorepo** containing both the frontend client 
 
 ---
 
-## ⚙️ Core Requirements & Implementation
+##  Core Requirements & Implementation
 
 ### 1. Users & Access
 The system supports strict Role-Based Access Control (RBAC):
@@ -39,7 +39,7 @@ Fields follow a strict, linear agricultural lifecycle:
 
 ---
 
-## 🧠 Field Status Logic (Computed)
+##  Field Status Logic (Computed)
 
 To provide immediate actionable insights without manual data entry, each field's "Status" is dynamically computed on the backend (`FieldService.computeStatus`) based on its data footprint:
 
@@ -49,7 +49,7 @@ To provide immediate actionable insights without manual data entry, each field's
 
 ---
 
-## 📐 Design Decisions & Assumptions
+##  Design Decisions & Assumptions
 
 ### Design Decisions
 - **Custom UI / Tailwind CSS:** Instead of relying on heavy component libraries (like Material UI), the interface was built using highly customized Tailwind CSS components. This prioritized a premium, glassmorphic, and dynamic aesthetic that is lightweight and fully responsive.
@@ -63,7 +63,7 @@ To provide immediate actionable insights without manual data entry, each field's
 
 ---
 
-## 🚀 Setup Instructions (Local Development)
+##  Setup Instructions (Local Development)
 
 ### Prerequisites
 - Node.js (v18+)
@@ -117,7 +117,7 @@ The application will be available at `http://localhost:5173`.
 
 ---
 
-## 🔑 Demo Credentials
+##  Demo Credentials
 
 To test the live application or your local seeded database, use the following credentials:
 
