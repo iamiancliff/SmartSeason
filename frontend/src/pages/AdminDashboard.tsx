@@ -350,7 +350,7 @@ export const AdminDashboard = () => {
                     </Select>
                   </TableCell>
                   <TableCell className="text-right">
-                    <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center justify-end gap-1 transition-opacity">
                       <Button variant="ghost" size="sm" onClick={() => openEditDialog(field)} title="Edit field">
                         <Pencil className="w-4 h-4" />
                       </Button>

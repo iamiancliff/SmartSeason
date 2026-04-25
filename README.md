@@ -123,9 +123,9 @@ To test the live application or your local seeded database, use the following cr
 
 **Admin (Coordinator) Account:**
 - **Email:** `admin@smartseason.com`
-- **Password:** `password123`
+- **Password:** `admin123`
 
 **Field Agent Account:**
 - **Email:** `agent@smartseason.com`
-- **Password:** `password123`
+- **Password:** `123agent`
 *(Note: You can also register a new agent via the "Create Account" screen).*
