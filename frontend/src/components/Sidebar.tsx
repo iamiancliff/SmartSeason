@@ -105,7 +105,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 border border-neutral-200">
               {user.profilePhoto && (
-                <AvatarImage src={`http://localhost:3000${user.profilePhoto}`} alt={user.name} />
+                <AvatarImage src={user.profilePhoto} alt={user.name} />
               )}
               <AvatarFallback className="bg-primary/10 text-primary text-sm font-semibold">
                 {user.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}

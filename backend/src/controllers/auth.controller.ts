@@ -1,7 +1,8 @@
 // src/controllers/auth.controller.ts
 import { Request, Response, NextFunction } from 'express';
-import { AuthRequest } from '../middleware/auth.ts';
-import { AuthService } from '../services/auth.service.ts';
+import { AuthRequest } from '../middleware/auth';
+import { AuthService } from '../services/auth.service';
+import { uploadToCloudinary } from '../utils/uploadToCloudinary';
 
 export class AuthController {
   static async register(req: Request, res: Response, next: NextFunction) {
@@ -46,8 +47,9 @@ export class AuthController {
       if (!req.file) {
         return res.status(400).json({ error: 'No file uploaded' });
       }
-      const filePath = `/uploads/${req.file.filename}`;
-      const user = await AuthService.uploadProfilePhoto(req.user!.id, filePath);
+      
+      const imageUrl = await uploadToCloudinary(req.file.buffer);
+      const user = await AuthService.uploadProfilePhoto(req.user!.id, imageUrl);
       res.json(user);
     } catch (error) {
       next(error);

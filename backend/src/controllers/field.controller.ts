@@ -1,7 +1,7 @@
 // src/controllers/field.controller.ts
 import { Response, NextFunction } from 'express';
-import { AuthRequest } from '../middleware/auth.ts';
-import { FieldService } from '../services/field.service.ts';
+import { AuthRequest } from '../middleware/auth';
+import { FieldService } from '../services/field.service';
 
 export class FieldController {
   static async create(req: AuthRequest, res: Response, next: NextFunction) {

@@ -1,7 +1,7 @@
 // src/services/auth.service.ts
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { prisma } from '../lib/prisma.ts';
+import { prisma } from '../lib/prisma';
 
 export class AuthService {
   static async register(data: any) {

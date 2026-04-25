@@ -1,15 +1,15 @@
 // src/routes/field.routes.ts
 import { Router } from 'express';
-import { FieldController } from '../controllers/field.controller.ts';
-import { authenticateToken } from '../middleware/auth.ts';
-import { authorizeRoles } from '../middleware/roles.ts';
-import { validate } from '../middleware/validate.ts';
+import { FieldController } from '../controllers/field.controller';
+import { authenticateToken } from '../middleware/auth';
+import { authorizeRoles } from '../middleware/roles';
+import { validate } from '../middleware/validate';
 import {
   createFieldSchema,
   updateFieldSchema,
   addUpdateSchema,
   assignAgentSchema,
-} from '../schemas/field.schema.ts';
+} from '../schemas/field.schema';
 
 const router = Router();
 

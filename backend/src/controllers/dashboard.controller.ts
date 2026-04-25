@@ -1,7 +1,7 @@
 // src/controllers/dashboard.controller.ts
 import { Response, NextFunction } from 'express';
-import { AuthRequest } from '../middleware/auth.ts';
-import { DashboardService } from '../services/dashboard.service.ts';
+import { AuthRequest } from '../middleware/auth';
+import { DashboardService } from '../services/dashboard.service';
 
 export class DashboardController {
   static async getDashboard(req: AuthRequest, res: Response, next: NextFunction) {

@@ -1,9 +1,9 @@
 // src/routes/user.routes.ts
 import { Router } from 'express';
-import { UserController } from '../controllers/user.controller.ts';
-import { authenticateToken } from '../middleware/auth.ts';
-import { authorizeRoles } from '../middleware/roles.ts';
-import { validate } from '../middleware/validate.ts';
+import { UserController } from '../controllers/user.controller';
+import { authenticateToken } from '../middleware/auth';
+import { authorizeRoles } from '../middleware/roles';
+import { validate } from '../middleware/validate';
 import { z } from 'zod';
 
 const router = Router();

@@ -1,7 +1,7 @@
 // src/routes/dashboard.routes.ts
 import { Router } from 'express';
-import { DashboardController } from '../controllers/dashboard.controller.ts';
-import { authenticateToken } from '../middleware/auth.ts';
+import { DashboardController } from '../controllers/dashboard.controller';
+import { authenticateToken } from '../middleware/auth';
 
 const router = Router();
 

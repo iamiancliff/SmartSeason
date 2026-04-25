@@ -1,5 +1,5 @@
 // src/services/dashboard.service.ts
-import { prisma } from '../lib/prisma.ts';
+import { prisma } from '../lib/prisma';
 
 // Reuse status computation logic (same as FieldService)
 function computeStatus(field: any): string {

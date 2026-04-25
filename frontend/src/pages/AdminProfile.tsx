@@ -3,7 +3,7 @@ import { useAuthStore } from '../stores/authStore';
 import { authApi } from '../api/auth.api';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
+import { PasswordInput } from '../components/ui/password-input';
 import { Label } from '../components/ui/label';
 import {
   Dialog,
@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from '../components/ui/dialog';
-import { User, Mail, ShieldCheck, MapPin, Camera, KeyRound, Loader2 } from 'lucide-react';
+import { User, Mail, ShieldCheck, Camera, KeyRound, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export const AdminProfile = () => {
@@ -25,7 +25,7 @@ export const AdminProfile = () => {
 
   if (!user) return null;
 
-  const displayLocation = user.location || 'Central Headquarters';
+
 
   const handlePhotoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -77,7 +77,7 @@ export const AdminProfile = () => {
            <div className="group cursor-pointer relative shrink-0" onClick={() => fileInputRef.current?.click()}>
              <div className="w-32 h-32 bg-white border-4 border-white shadow-md rounded-full flex justify-center items-center text-[#a3e635] overflow-hidden transition-transform duration-300 group-hover:scale-105">
                 {user.profilePhoto ? (
-                  <img src={`http://localhost:3000${user.profilePhoto}`} alt="Profile" className="w-full h-full object-cover" />
+                  <img src={user.profilePhoto} alt="Profile" className="w-full h-full object-cover" />
                 ) : (
                   <User size={64} strokeWidth={1.5} />
                 )}
@@ -144,14 +144,7 @@ export const AdminProfile = () => {
               </div>
             </div>
 
-            <div className="space-y-1.5 border-b border-gray-100 pb-4">
-              <label className="text-xs font-bold text-gray-400 uppercase flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5" /> Assignment Location
-              </label>
-              <div className="font-semibold text-gray-900 text-lg">
-                {displayLocation}
-              </div>
-            </div>
+
           </div>
 
           {/* Security Zone */}
@@ -186,22 +179,20 @@ export const AdminProfile = () => {
             <div className="grid gap-4 py-4">
               <div className="grid gap-2">
                 <Label htmlFor="currentPassword">Current Password</Label>
-                <Input 
+                <PasswordInput 
                   id="currentPassword" 
-                  type="password" 
                   value={passwordForm.currentPassword} 
-                  onChange={e => setPasswordForm({...passwordForm, currentPassword: e.target.value})} 
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPasswordForm({...passwordForm, currentPassword: e.target.value})} 
                   required 
                   disabled={isChangingPassword}
                 />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="newPassword">New Password</Label>
-                <Input 
+                <PasswordInput 
                   id="newPassword" 
-                  type="password" 
                   value={passwordForm.newPassword} 
-                  onChange={e => setPasswordForm({...passwordForm, newPassword: e.target.value})} 
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPasswordForm({...passwordForm, newPassword: e.target.value})} 
                   required 
                   minLength={6}
                   disabled={isChangingPassword}

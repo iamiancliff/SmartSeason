@@ -1,17 +1,15 @@
 // src/server.ts
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { rateLimit } from 'express-rate-limit';
-import dotenv from 'dotenv';
 
-import authRoutes from './routes/auth.routes.ts';
-import fieldRoutes from './routes/field.routes.ts';
-import userRoutes from './routes/user.routes.ts';
-import dashboardRoutes from './routes/dashboard.routes.ts';
-import { errorHandler } from './middleware/errorHandler.ts';
-
-dotenv.config();
+import authRoutes from './routes/auth.routes';
+import fieldRoutes from './routes/field.routes';
+import userRoutes from './routes/user.routes';
+import dashboardRoutes from './routes/dashboard.routes';
+import { errorHandler } from './middleware/errorHandler';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,7 +17,6 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 // Middleware
 app.use(express.json());
-app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 app.use(cors({
   origin: FRONTEND_URL,
   credentials: true,

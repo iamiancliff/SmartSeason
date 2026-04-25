@@ -1,5 +1,5 @@
 // src/services/user.service.ts
-import { prisma } from '../lib/prisma.ts';
+import { prisma } from '../lib/prisma';
 
 export class UserService {
   static async getAllUsers() {

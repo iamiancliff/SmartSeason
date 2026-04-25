@@ -1,7 +1,7 @@
 // src/controllers/user.controller.ts
 import { Response, NextFunction } from 'express';
-import { AuthRequest } from '../middleware/auth.ts';
-import { UserService } from '../services/user.service.ts';
+import { AuthRequest } from '../middleware/auth';
+import { UserService } from '../services/user.service';
 
 export class UserController {
   static async getAll(req: AuthRequest, res: Response, next: NextFunction) {
