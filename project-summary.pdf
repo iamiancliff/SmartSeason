@@ -1,0 +1,40 @@
+Project Contributions Summary
+
+Prepared from public repo metadata and project descriptions.
+
+1. Tenga Backoffice
+Project: A back-office/admin dashboard designed to support business operations, workflow visibility, and internal management tasks.
+Tech stack: TypeScript, frontend UI architecture, API-driven application patterns.
+
+2. JDW
+Project: A web platform project combining product and backend functionality, likely aimed at operational or business-facing workflows.
+Tech stack: Python, JavaScript.
+
+3. Twall Web UI v1
+Project: A web front-end for a business/trading-oriented platform, with a focus on a clean and responsive user interface.
+Tech stack: TypeScript.
+
+4. Ethum Operator Dashboard
+Project: An operator dashboard for monitoring performance, workflows, and lead-generation/business operations.
+Tech stack: JavaScript, CSS.
+
+5. Phonetopia Admin Dashboard Front
+Project: A management dashboard for platform administration, likely handling data operations and internal controls.
+Tech stack: TypeScript, CSS.
+
+6. Phonetopia Core API
+Project: The backend service layer for the Phonetopia platform, powering business logic, data processing, and database access.
+Tech stack: TypeScript, Node.js, Express, PostgreSQL, Prisma.
+
+7. SmartSeason
+Project: A TypeScript-based product/application focused on a polished user experience and scalable frontend architecture.
+Tech stack: TypeScript, CSS.
+
+8. ICP-KH2PEK 2026 Repo
+Project: An Internet Computer / infrastructure-focused project combining web interfaces and backend automation.
+Tech stack: JavaScript, Python, CSS, HCL.
+
+Overall summary
+Across these projects, the common pattern is a mix of modern frontend work, backend/API development, and business or operations dashboards. The technology mix is mainly TypeScript and JavaScript, with supporting tools such as Node.js, Express, PostgreSQL, Prisma, CSS, Python, and HCL for infrastructure or automation tasks.
+
+This summary is based on public repo information and language composition, so the exact implementation details may vary by project.
